@@ -1,19 +1,21 @@
 @extends('layouts.app')
 
+@section('title', 'Daftar Kegiatan')
+
 @section('content')
 <div class="container">
-    <h1>Daftar Laporan Kegiatan</h1>
-
-    <a href="{{ route('kegiatan.create') }}" class="btn btn-primary mb-3">Tambah Kegiatan</a>
+    <h1 class="mb-4">Daftar Kegiatan</h1>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table">
+    <a href="{{ route('kegiatan.create') }}" class="btn btn-primary mb-3">Tambah Kegiatan</a>
+
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Nama Laporan Kegiatan</th>
+                <th>Nama Kegiatan</th>
                 <th>Deskripsi</th>
                 <th>Tanggal</th>
                 <th>Waktu</th>
@@ -21,19 +23,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($LaporanKegiatans as $LaporanKegiatan)
+            @foreach($kegiatans as $kegiatan)
                 <tr>
-                    <td>{{ $LaporanKegiatan->nama_LaporanKegiatan }}</td>
-                    <td>{{ $LaporanKegiatan->deskripsi }}</td>
-                    <td>{{ $LaporanKegiatan->tanggal }}</td>
-                    <td>{{ $LaporanKegiatan->waktu }}</td>
+                    <td>{{ $kegiatan->nama_kegiatan }}</td>
+                    <td>{{ $kegiatan->deskripsi }}</td>
+                    <td>{{ $kegiatan->tanggal }}</td>
+                    <td>{{ $kegiatan->waktu }}</td>
                     <td>
-                        <a href="{{ route('LaporanKegiatan.show', $LaporanKegiatan->id) }}" class="btn btn-info">Detail</a>
-                        <a href="{{ route('LaporanKegiatan.edit', $LaporanKegiatan->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('LaporanKegiatan.destroy', $LaporanKegiatan->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('kegiatan.show', $kegiatan->id) }}" class="btn btn-info btn-sm">Detail</a>
+                        <a href="{{ route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('kegiatan.destroy', $kegiatan->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                         </form>
                     </td>
                 </tr>

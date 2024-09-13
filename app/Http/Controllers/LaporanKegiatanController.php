@@ -9,10 +9,10 @@ class LaporanKegiatanController extends Controller
 {
     // Menampilkan daftar LaporanKegiatan
     public function index()
-    {
-        $LaporanKegiatans = LaporanKegiatan::all();
-        return view('LaporanKegiatan.index', compact('LaporanKegiatans'));
-    }
+{
+    $kegiatans = LaporanKegiatan::all(); // Mengambil semua data dari model LaporanKegiatan
+    return view('LaporanKegiatan.index', compact('kegiatans'));
+}
 
     // Menampilkan form untuk menambahkan LaporanKegiatan baru
     public function create()
@@ -22,18 +22,22 @@ class LaporanKegiatanController extends Controller
 
     // Menyimpan LaporanKegiatan baru ke database
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nama_LaporanKegiatan' => 'required|max:255',
-            'deskripsi' => 'nullable',
-            'tanggal' => 'required|date',
-            'waktu' => 'required',
-        ]);
+{
+    $validated = $request->validate([
+        'nama_kegiatan' => 'required|max:255',
+        'deskripsi' => 'nullable',
+        'tanggal' => 'required|date',
+        'waktu' => 'required',
+    ]);
 
-        LaporanKegiatan::create($validated);
+    // Periksa data yang diterima
+    dd($validated);
 
-        return redirect()->route('LaporanKegiatan.index')->with('success', 'LaporanKegiatan berhasil ditambahkan');
-    }
+    LaporanKegiatan::create($validated);
+
+    return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil ditambahkan');
+}
+
 
     // Menampilkan detail LaporanKegiatan
     public function show(LaporanKegiatan $LaporanKegiatan)
