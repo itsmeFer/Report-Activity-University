@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Daftar Kegiatan</h1>
+    <h1 class="mb-4">Daftar Kegiatan lengakap </h1>
 
     <div class="mb-3">
         <strong>Nama Kegiatan:</strong>
