@@ -16,7 +16,7 @@
         <thead>
             <tr>
                 <th>Nama Kegiatan</th>
-                <th>Deskripsi</th>
+                <th>Deskripsi kegiatan</th>
                 <th>Tanggal</th>
                 <th>Waktu</th>
                 <th>Aksi</th>
